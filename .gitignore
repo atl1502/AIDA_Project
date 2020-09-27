@@ -130,4 +130,8 @@ dmypy.json
 
 #Project
 Secrets/
+<<<<<<< HEAD
+.DS_store
+=======
 data/
+>>>>>>> d2c5d7b6da2032c4075b76baea4e602c6ceda8dd
