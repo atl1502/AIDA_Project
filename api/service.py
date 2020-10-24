@@ -1,8 +1,11 @@
 import os
 from typing import List
 from dotenv import load_dotenv
-import pandas as pd
 
+import pandas as pd
+import simfin as sf
+
+ROOT_DIR = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
 
 def get_token() -> str:
     """Gets Tiingo API token"""
@@ -53,6 +56,46 @@ def get_fundamentals(ticker: str, token: str,
     else:
         return df
 
+def setup_simfin():
+  sf.set_api_key('free')
+  sf.set_data_dir(os.path.join(ROOT_DIR, 'simfin_data'))
+
+def get_balance() -> pd.DataFrame:
+  """Gets the bulk balance statements from SimFin API
+
+  Downloads the data if you don't already have it
+  """
+  setup_simfin()
+
+  df = sf.load_balance(variant='quarterly', market='us')
+  return df
+
+def get_income() -> pd.DataFrame:
+  """Gets the bulk income statements from SimFin API
+
+  Downloads the data if you don't already have it
+  """
+  setup_simfin()
+  df = sf.load_income(variant='quarterly', market='us')
+  return df
+
+def get_income() -> pd.DataFrame:
+  """Gets the bulk income statements from SimFin API
+
+  Downloads the data if you don't already have it
+  """
+  setup_simfin()
+  df = sf.load_income(variant='quarterly', market='us')
+  return df
+
+def get_share_prices() -> pd.DataFrame:
+  """Gets the bulk share prices from SimFin API
+
+  Downloads the data if you don't already have it
+  """
+  setup_simfin()
+  df = sf.load_shareprices(variant='daily', market='us')
+  return df
 
 if __name__ == '__main__':
     token = get_token()
