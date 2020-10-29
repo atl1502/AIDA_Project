@@ -79,13 +79,13 @@ def get_income() -> pd.DataFrame:
   df = sf.load_income(variant='quarterly', market='us')
   return df
 
-def get_income() -> pd.DataFrame:
-  """Gets the bulk income statements from SimFin API
+def get_cashflow() -> pd.DataFrame:
+  """Gets the bulk cashflow statements from SimFin API
 
   Downloads the data if you don't already have it
-  """
+    """
   setup_simfin()
-  df = sf.load_income(variant='quarterly', market='us')
+  df = sf.load_cashflow(variant='quarterly', market='us')
   return df
 
 def get_share_prices() -> pd.DataFrame:
