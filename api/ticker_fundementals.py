@@ -1,10 +1,8 @@
 import pandas as pd
-import simfin as sf
+from typing import List
 import service
 
-#TODO: add mypy annotations for the useful_stats, wasn't able to add List[str].
-
-def get_ticker_income(ticker: str, useful_stats = None) -> pd.DataFrame:
+def get_ticker_income(ticker: str, useful_stats: List[str] = None) -> pd.DataFrame:
   """Sorts income statement so it only has that tickers data.
   Data is indexed by the report date.
   """
@@ -14,7 +12,7 @@ def get_ticker_income(ticker: str, useful_stats = None) -> pd.DataFrame:
   income_df = df.loc[ticker, useful_stats]
   return income_df
 
-def get_ticker_balance(ticker: str, useful_stats = None) -> pd.DataFrame:
+def get_ticker_balance(ticker: str, useful_stats: List[str] = None) -> pd.DataFrame:
   """Sorts balance sheet so it only has that tickers data.
   Data is indexed by the report date.
   """
@@ -24,7 +22,7 @@ def get_ticker_balance(ticker: str, useful_stats = None) -> pd.DataFrame:
   balance_df = df.loc[ticker, useful_stats]
   return balance_df
 
-def get_ticker_cashflow(ticker: str, useful_stats = None) -> pd.DataFrame:
+def get_ticker_cashflow(ticker: str, useful_stats: List[str] = None) -> pd.DataFrame:
   """Sorts cashflow so it only has that tickers data.
   Data is indexed by the report date.
   """
