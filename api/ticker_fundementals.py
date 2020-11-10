@@ -31,3 +31,13 @@ def get_ticker_cashflow(ticker: str, useful_stats: List[str] = None) -> pd.DataF
       useful_stats = df.columns
   cashflow_df = df.loc[ticker, useful_stats]
   return cashflow_df
+
+def join_tables(df1: pd.DataFrame, df2: pd.DataFrame) -> pd.DataFrame:
+  """Joins two pandas dataframes together by columns and returns a new one.
+  """
+  for column1 in df1:
+      for column2 in df2:
+          if column1 == column2:
+              df2.drop(column2,axis=1, inplace=True)
+  return_df = df1.join(df2)
+  return return_df
