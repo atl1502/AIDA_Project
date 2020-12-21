@@ -8,6 +8,8 @@ sys.path.append(ROOT_DIR)
 
 from api import service
 
+
+
 def get_monthly_averages(df):
   output = {}
   for year in range(df.index[0].year, df.index[-1].year + 1):
@@ -36,9 +38,13 @@ def get_monthly_averages(df):
 def write_output(df, ticker):
   ticker_prices = df.loc[ticker, "Close"]
   output =  get_monthly_averages(ticker_prices)
+
+  if not os.path.exists(f'data/{ticker}'):
+    os.makedirs(f'data/{ticker}')
+  
   output.to_csv(f'data/{ticker}/output.csv')
 
 df_prices = service.get_share_prices()
-write_output(df_prices, 'AAPL')
+write_output(df_prices, 'ATVI')
 
 # https://github.com/SimFin/simfin-tutorials/blob/master/09_Machine_Learning.ipynb
